@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import type { TipoProducto } from '../../types';
 import './TipoProductoDropdown.css';
+
 
 interface TipoProductoDropdownProps {
   onTipoSelect: (tipoId: number | null) => void;
@@ -12,6 +14,9 @@ const TipoProductoDropdown: React.FC<TipoProductoDropdownProps> = ({ onTipoSelec
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTipo, setSelectedTipo] = useState<number | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
+  console.log('tiposProducto:', tiposProducto);
 
   useEffect(() => {
     fetchTiposProducto();
@@ -44,16 +49,22 @@ const TipoProductoDropdown: React.FC<TipoProductoDropdownProps> = ({ onTipoSelec
   };
 
   const handleTipoClick = (tipoId: number | null) => {
-    onTipoSelect(tipoId);
-    setSelectedTipo(tipoId);
+    console.log('Click en tipo:', tipoId); // <-- Agrega esto
     setIsOpen(false);
+    setSelectedTipo(tipoId);
+    onTipoSelect(tipoId);
+    if (tipoId) {
+      navigate(`/productos/${tipoId}`);
+    } else {
+      navigate('/');
+    }
   };
 
   // Nombre a mostrar en el botón
   const selectedTipoNombre =
     selectedTipo === null
       ? 'Todas las categorías'
-      : tiposProducto.find((tipo) => tipo.id === selectedTipo)?.nombre_tipo || 'Categoría';
+      : tiposProducto.find((tipo) => tipo.idtipo_producto === selectedTipo)?.nombre_tipo || 'Categoría';
 
   return (
     <div className="dropdown-container" ref={dropdownRef}>
@@ -70,15 +81,15 @@ const TipoProductoDropdown: React.FC<TipoProductoDropdownProps> = ({ onTipoSelec
       >
         {isOpen && (
           <div>
-            {tiposProducto.map((tipo) => (
+            {tiposProducto.map((tipo, idx) => (
               <div
-                key={tipo.id}
-                className={`dropdown-item${selectedTipo === tipo.id ? ' selected' : ''}`}
-                onClick={() => handleTipoClick(tipo.id ?? null)}
-              >
-                {tipo.nombre_tipo}
-              </div>
-            ))}
+              key={tipo.idtipo_producto ?? `tipo-${idx}`}
+              className={`dropdown-item${selectedTipo === tipo.idtipo_producto ? ' selected' : ''}`}
+              onClick={() => handleTipoClick(tipo.idtipo_producto ?? null)}
+  >
+    {tipo.nombre_tipo}
+  </div>
+))}
           </div>
         )}
       </div>

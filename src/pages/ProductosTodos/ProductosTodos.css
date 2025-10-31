@@ -1,0 +1,10 @@
+.products-list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.products-list-container h2 {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

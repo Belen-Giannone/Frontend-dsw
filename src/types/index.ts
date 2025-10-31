@@ -12,7 +12,7 @@ export interface Usuario {
 }
 
 export interface TipoProducto {
-  id?: number;
+  idtipo_producto: number;
   nombre_tipo: string;
   desc_tipo?: string;
 }
