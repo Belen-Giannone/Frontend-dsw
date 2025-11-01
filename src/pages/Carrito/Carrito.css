@@ -1,0 +1,37 @@
+.carrito-page {
+  padding: 2rem;
+  background: #232323;
+  min-height: 100vh;
+}
+
+.carrito-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.carrito-lista {
+  flex: 2;
+}
+
+.carrito-item {
+  background: #232323;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.carrito-resumen {
+  flex: 1;
+  background: #232323;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  min-width: 250px;
+}
+
+.carrito-resumen button {
+  margin-top: 1rem;
+  width: 100%;
+}

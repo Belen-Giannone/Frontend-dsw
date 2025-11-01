@@ -24,37 +24,33 @@ const ProductosTodos: React.FC = () => {
     }
   };
 
-  const handleAddToCart = (id: number) => {
-    alert(`Producto ${id} agregado al carrito`);
-  };
-
-return (
-  <div className="productos-todos">
-    <div className="products-list-container">
-      <h2>Todos los productos</h2>
-      {loading ? (
-        <div className="loading">Cargando productos...</div>
-      ) : (
-        <div className="products-list">
-          {products.map((product) => (
-            <ProductCard
-              key={product.idproducto ?? 0}
-              id={product.idproducto ?? 0}
-              nombre={product.nombre_prod ?? ''}
-              precio={product.precio ?? 0}
-              imagen={
-                product.imagen
-                  ? `http://localhost:4000/${product.imagen.replace(/^\/+/, '')}`
-                  : '/placeholder.jpg'
-              }
-              onAddToCart={handleAddToCart}
-            />
-          ))}
-        </div>
-      )}
+  return (
+    <div className="productos-todos">
+      <div className="products-list-container">
+        <h2>Todos los productos</h2>
+        {loading ? (
+          <div className="loading">Cargando productos...</div>
+        ) : (
+          <div className="products-list">
+            {products.map((product) => (
+              <ProductCard
+                key={product.idproducto ?? 0}
+                id={product.idproducto ?? 0}
+                nombre={product.nombre_prod ?? ''}
+                precio={product.precio ?? 0}
+                imagen={
+                  product.imagen
+                    ? `http://localhost:4000/${product.imagen.replace(/^\/+/, '')}`
+                    : '/placeholder.jpg'
+                }
+                stock={product.cant_stock ?? 0} // <-- Agrega este prop
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
-  </div>
-); 
-}
+  );
+};
 
 export default ProductosTodos;

@@ -4,3 +4,57 @@
   padding: 0; /*elimina el padding por defecto del contenedor principal*/
   box-sizing: border-box; /*incluye el padding y el borde en el cálculo del ancho y alto total*/
 }
+
+.toast-global {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  color: #fff;
+  padding: 1.2rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+  font-size: 1.1rem;
+  z-index: 9999;
+  min-width: 260px;
+  animation: fadeInOut 1.8s;
+}
+
+.toast-global.success {
+  background: #4bb543;
+}
+
+.toast-global.error {
+  background: #e74c3c;
+}
+
+.toast-global.info {
+  background: #3498db;
+}
+
+.toast-global strong {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 0.2rem;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}

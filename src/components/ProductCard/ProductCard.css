@@ -44,3 +44,11 @@
   box-shadow: 0 8px 24px rgba(216, 9, 222, 0.18);
   transform: translateY(-6px) scale(1.03);
 }
+
+.notificacion-carrito {
+  display: block;
+  margin-top: 0.5rem;
+  color: #6a89ef;
+  font-weight: bold;
+  animation: fadeInOut 1.5s;
+}

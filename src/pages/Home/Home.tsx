@@ -28,10 +28,6 @@ const Home: React.FC = () => {
     }
   };
 
-  const handleAddToCart = (id: number) => {
-    alert(`Producto ${id} agregado al carrito`);
-  };
-
   return (
     <div className="home">
       <main className="main-content">
@@ -55,7 +51,7 @@ const Home: React.FC = () => {
                       ? `http://localhost:4000/${product.imagen.replace(/^\/+/, '')}`
                       : '/placeholder.jpg'
                   }
-                  onAddToCart={handleAddToCart}
+                  stock={product.cant_stock ?? 0} 
                 />
               ))}
             </div>

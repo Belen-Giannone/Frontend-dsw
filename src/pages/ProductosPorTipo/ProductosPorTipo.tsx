@@ -40,7 +40,7 @@ const ProductosPorTipo: React.FC = () => {
                   ? `http://localhost:4000/${product.imagen.replace(/^\/+/, '')}`
                   : '/placeholder.jpg'
               }
-              onAddToCart={() => {}}
+              stock={product.cant_stock ?? 0} // <-- Agrega este prop
             />
           ))}
         </div>
