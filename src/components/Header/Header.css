@@ -78,6 +78,75 @@
   padding-left: 32px;
 }
 
+.user-menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.user-btn {
+  min-width: 120px;
+  background-color: #EE03F2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.user-btn:hover {
+  background-color: #b300b3;
+}
+
+.user-dropdown {
+  position: absolute;
+  right: 0;
+  top: 110%;
+  background: #181818;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+  min-width: 220px;
+  padding: 1rem;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.logout-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background: #c0392b;
+}
+
+.mis-pedidos-btn {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s;
+}
+
+.mis-pedidos-btn:hover {
+  background: #217dbb;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .header-row {

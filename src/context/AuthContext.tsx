@@ -1,12 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import type { Usuario } from '../types';
 
-interface Usuario {
-  idusuario: number;
-  nombre: string;
-  email: string;
-  rol: 'cliente' | 'admin';
-  // agrega otros campos si los necesitas
-}
 
 interface AuthContextType {
   user: Usuario | null;

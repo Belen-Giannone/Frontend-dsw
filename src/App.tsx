@@ -9,6 +9,8 @@ import { ToastProvider } from './context/ToastContext';
 import { AuthProvider } from './context/AuthContext';
 import Carrito from './pages/Carrito/Carrito';
 import Login from './pages/Login/Login';
+import Registro from './pages/Registro/Registro';
+import MisPedidos from './pages/MisPedidos/MisPedidos';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
             <Route path="/producto/:id" element={<DetalleProducto />} />
             <Route path="/carrito" element={<Carrito />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/registro" element={<Registro />} />
+            <Route path="/mis-pedidos" element={<MisPedidos />} />
           </Routes>
         </CarritoProvider>
         </AuthProvider>

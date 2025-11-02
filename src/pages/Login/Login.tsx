@@ -6,27 +6,28 @@ import api from '../../services/api';
 import './Login.css';
 
 const Login: React.FC = () => {
-  const [usuario, setUsuario] = useState('');
-  const [contrasena, setContrasena] = useState('');
+  const [user_usuario, setUsuario] = useState(''); 
+  const [contraseña, setContrasena] = useState('');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const { showToast } = useToast();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const res = await api.post('/auth/login', { usuario, contrasena });
-      login(res.data.token, res.data.usuario);
-      showToast('¡Bienvenido!', 'success');
-      navigate('/');
-    } catch (error: any) {
-      showToast('Credenciales incorrectas', 'error');
-    } finally {
-      setLoading(false);
-    }
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    const res = await api.post('/usuario/login', { user_usuario, contraseña }); 
+    login(res.data.token, res.data.user);
+    showToast('¡Bienvenido!', 'success');
+    navigate('/');
+  } catch (error: any) {
+    showToast('Datos incorrectos', 'error');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="login-page">
@@ -36,7 +37,7 @@ const Login: React.FC = () => {
         <input
           type="text"
           placeholder="Nombre de usuario"
-          value={usuario}
+          value={user_usuario} //usuario
           onChange={e => setUsuario(e.target.value)}
           required
         />
@@ -44,7 +45,7 @@ const Login: React.FC = () => {
         <input
           type="password"
           placeholder="Contraseña"
-          value={contrasena}
+          value={contraseña}
           onChange={e => setContrasena(e.target.value)}
           required
         />

@@ -11,6 +11,19 @@ export const api = axios.create({
   timeout: 10000, // 10 segundos de timeout
 });
 
+// Interceptor para agregar el token a cada request protegida
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers = config.headers || {};
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 // Interceptor para manejar errores globalmente
 api.interceptors.response.use(
   (response) => {
