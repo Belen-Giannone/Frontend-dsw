@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../../../services/api';
 import { useToast } from '../../../context/ToastContext';
 import './ProductosAdmin.css';
@@ -21,6 +22,7 @@ const ProductosAdmin: React.FC = () => {
   const pageSize = 10;
   const { showToast } = useToast();
   const [busqueda, setBusqueda] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProductos();
@@ -88,87 +90,96 @@ const ProductosAdmin: React.FC = () => {
     setPagina(1);
   };
 
-  return (
-    <div className="productos-admin-container">
-      <h1>Listado de Productos</h1>
-      <div className="productos-admin-bar">
-        <input
-          type="text"
-          placeholder="Buscar por nombre..."
-          value={busqueda}
-          onChange={e => {
-            setBusqueda(e.target.value);
-            setPagina(1);
-          }}
-        />
-        <button onClick={handleLimpiar} style={{ marginLeft: 8 }}>Limpiar</button>
-      </div>
-      {error && <div className="error">{error}</div>}
-      <table className="productos-admin-table">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Imagen</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Estado</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {loading ? (
-            <tr><td colSpan={8}>Cargando...</td></tr>
-          ) : productosPagina.length === 0 ? (
-            <tr><td colSpan={8}>No hay productos</td></tr>
-          ) : (
-            productosPagina.map(producto => (
-              <tr key={producto.id_producto}>
-                <td>{producto.id_producto}</td>
-                <td>{producto.nombre_producto}</td>
-                <td>{producto.descripcion_producto}</td>
-                <td>
-                  {producto.imagen_producto
-                    ? <span className="url-imagen">{producto.imagen_producto}</span>
-                    : <span style={{ color: '#aaa' }}>Sin imagen</span>
-                  }
-                </td>
-                <td>
-                  {typeof producto.precio_producto === 'number'
-                    ? `$${producto.precio_producto.toFixed(2)}`
-                    : <span style={{ color: '#aaa' }}>Sin precio</span>
-                  }
-                </td>
-                <td>{producto.stock_producto}</td>
-                <td>
-                  {producto.activo ? (
-                    <span className="estado-activo">Activo</span>
-                  ) : (
-                    <span className="estado-inactivo">Inactivo</span>
-                  )}
-                </td>
-                <td>
-                  <button className="editar-btn">Editar</button>
-                  {producto.activo ? (
-                    <button className="borrar-btn" onClick={() => handleDesactivar(producto)}>Desactivar</button>
-                  ) : (
-                    <button className="reactivar-btn" onClick={() => handleReactivar(producto)}>Reactivar</button>
-                  )}
-                </td>
-              </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-      {/* Paginación */}
-      <div className="paginacion">
-        <button onClick={() => setPagina(p => Math.max(1, p - 1))} disabled={pagina === 1}>Anterior</button>
-        <span>Página {pagina} de {totalPaginas}</span>
-        <button onClick={() => setPagina(p => Math.min(totalPaginas, p + 1))} disabled={pagina === totalPaginas}>Siguiente</button>
-      </div>
+return (
+  <div className="productos-admin-container">
+    <h1>Listado de Productos</h1>
+    <div className="productos-admin-bar">
+      <input
+        type="text"
+        placeholder="Buscar por nombre..."
+        value={busqueda}
+        onChange={e => {
+          setBusqueda(e.target.value);
+          setPagina(1);
+        }}
+      />
+      <button onClick={handleLimpiar} style={{ marginLeft: 8 }}>Limpiar</button>
+      <button
+        className="agregar-btn"
+        style={{ marginLeft: 8 }}
+        onClick={() => navigate('/admin/productos/agregar')}
+      >
+        Agregar producto
+      </button>
     </div>
-  );
+    {error && <div className="error">{error}</div>}
+    <table className="productos-admin-table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Imagen</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Estado</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {loading ? (
+          <tr><td colSpan={8}>Cargando...</td></tr>
+        ) : productosPagina.length === 0 ? (
+          <tr><td colSpan={8}>No hay productos</td></tr>
+        ) : (
+          productosPagina.map(producto => (
+            <tr key={producto.id_producto}>
+              <td>{producto.id_producto}</td>
+              <td>{producto.nombre_producto}</td>
+              <td>{producto.descripcion_producto}</td>
+              <td>
+                {producto.imagen_producto
+                  ? <span className="url-imagen">{producto.imagen_producto}</span>
+                  : <span style={{ color: '#aaa' }}>Sin imagen</span>
+                }
+              </td>
+              <td>
+                {typeof producto.precio_producto === 'number'
+                  ? `$${producto.precio_producto.toFixed(2)}`
+                  : <span style={{ color: '#aaa' }}>Sin precio</span>
+                }
+              </td>
+              <td>{producto.stock_producto}</td>
+              <td>
+                {producto.activo ? (
+                  <span className="estado-activo">Activo</span>
+                ) : (
+                  <span className="estado-inactivo">Inactivo</span>
+                )}
+              </td>
+              <td>
+                <button className="editar-btn" onClick={() => navigate(`/admin/productos/editar/${producto.id_producto}`)}>
+                  Editar
+                </button>
+                {producto.activo ? (
+                  <button className="borrar-btn" onClick={() => handleDesactivar(producto)}>Desactivar</button>
+                ) : (
+                  <button className="reactivar-btn" onClick={() => handleReactivar(producto)}>Reactivar</button>
+                )}
+              </td>
+            </tr>
+          ))
+        )}
+      </tbody>
+    </table>
+    {/* Paginación */}
+    <div className="paginacion">
+      <button onClick={() => setPagina(p => Math.max(1, p - 1))} disabled={pagina === 1}>Anterior</button>
+      <span>Página {pagina} de {totalPaginas}</span>
+      <button onClick={() => setPagina(p => Math.min(totalPaginas, p + 1))} disabled={pagina === totalPaginas}>Siguiente</button>
+    </div>
+  </div>
+);
 };
 
 export default ProductosAdmin;

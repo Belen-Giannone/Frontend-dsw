@@ -59,10 +59,8 @@
   display: inline-block;
   max-width: 180px;
   overflow: hidden;
-  /* Cambia auto por hidden */
   white-space: nowrap;
   text-overflow: ellipsis;
-  /* Agrega esto para ... al final */
   color: #90caf9;
   font-size: 0.97rem;
   background: #181818;
@@ -142,4 +140,86 @@
   padding: 0.5rem 1.2rem;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.agregar-btn {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+/* Formulario de agregar/editar producto alineado */
+.productos-admin-form {
+  background: #232323;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.productos-admin-form .form-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+}
+
+.productos-admin-form .form-row label {
+  min-width: 120px;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+.productos-admin-form .form-row input,
+.productos-admin-form .form-row textarea {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.productos-admin-form .form-row textarea {
+  min-height: 60px;
+  max-height: 200px;
+  resize: vertical;
+}
+
+.productos-admin-form .form-row input[type="checkbox"] {
+  min-width: unset;
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.productos-admin-form button[type="submit"] {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+
+.productos-admin-form button[type="submit"]:hover:enabled {
+  background: #1565c0;
+}
+
+.productos-admin-form select {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #181818;
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 0;
+  box-sizing: border-box;
 }

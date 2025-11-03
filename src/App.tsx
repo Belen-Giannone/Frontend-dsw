@@ -16,6 +16,9 @@ import AgregarUsuarioAdmin from './pages/Admin/Usuarios/AgregarUsuarioAdmin';
 import EditarUsuarioAdmin from './pages/Admin/Usuarios/EditarUsuarioAdmin';
 import CategoriasAdmin from './pages/Admin/Categorias/CategoriasAdmin';
 import ProductosAdmin from './pages/Admin/Productos/ProductosAdmin';
+import EditarProductoAdmin from './pages/Admin/Productos/EditarProductoAdmin';
+import AgregarProductoAdmin from './pages/Admin/Productos/AgregarProductoAdmin';
+import PedidosAdmin from './pages/Admin/Pedidos/PedidosAdmin';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -42,7 +45,10 @@ function App() {
             <Route path="/admin/usuarios/agregar" element={<AgregarUsuarioAdmin />} />
             <Route path="/admin/usuarios/editar/:id" element={<EditarUsuarioAdmin />} />
             <Route path="/admin/categorias" element={<CategoriasAdmin />} />
-            <Route path="/admin/productos" element={<ProductosAdmin />} />s
+            <Route path="/admin/productos" element={<ProductosAdmin />} />
+            <Route path="/admin/productos/editar/:id" element={<EditarProductoAdmin />} />
+            <Route path="/admin/productos/agregar" element={<AgregarProductoAdmin />} />
+            <Route path="/admin/pedidos" element={<PedidosAdmin />} />
           </Routes>
         </CarritoProvider>
         </AuthProvider>
