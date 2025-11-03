@@ -1,0 +1,56 @@
+.mis-pedidos-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #181818;
+  color: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.pedido-item {
+  border-bottom: 1px solid #333;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+}
+
+.pedido-detalle-btn {
+  margin-left: 12px;
+  background: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+}
+
+.detalle-modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.detalle-modal-content {
+  background: #181818;
+  color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  min-width: 320px;
+  max-width: 500px;
+}
+
+.detalle-cerrar-btn {
+  margin-top: 16px;
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+}

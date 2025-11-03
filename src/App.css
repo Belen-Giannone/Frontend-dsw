@@ -25,6 +25,7 @@
 
 .toast-global.error {
   background: #e74c3c;
+  color:#fff
 }
 
 .toast-global.info {

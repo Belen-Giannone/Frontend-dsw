@@ -14,7 +14,7 @@ export interface Usuario {
 export interface TipoProducto {
   idtipo_producto: number;
   nombre_tipo: string;
-  desc_tipo?: string;
+  desc_tipo?: string | null;
 }
 
 export interface Producto {

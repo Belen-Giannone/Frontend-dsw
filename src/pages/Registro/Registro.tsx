@@ -27,7 +27,12 @@ const Registro: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await api.post('/usuario/add', form);
+          // Convertir tel_usuario a número antes de enviar
+    const dataToSend = {
+      ...form,
+      tel_usuario: Number(form.tel_usuario)
+    };
+      await api.post('/usuario/add', dataToSend);
       showToast('¡Registro exitoso! Ahora puedes iniciar sesión.', 'success');
       navigate('/login');
     } catch (error: any) {
@@ -37,42 +42,42 @@ const Registro: React.FC = () => {
     }
   };
 
-  return (
-    <div className="login-page">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Registrarse</h2>
-        <div style={{ display: 'flex', gap: 10 }}>
-          <div style={{ flex: 1 }}>
-            <label>Nombre de usuario</label>
-            <input name="user_usuario" value={form.user_usuario} onChange={handleChange} required />
-          </div>
-          <div style={{ flex: 1 }}>
-            <label>Contraseña</label>
-            <input name="contraseña" type="password" value={form.contraseña} onChange={handleChange} required />
-          </div>
+return (
+  <div className="login-page">
+    <form className="login-form" onSubmit={handleSubmit}>
+      <h2>Registrarse</h2>
+      <div className="input-row">
+        <div>
+          <label>Nombre de usuario</label>
+          <input name="user_usuario" value={form.user_usuario} onChange={handleChange} required />
         </div>
-        <label>Email</label>
-        <input name="email_usuario" type="email" value={form.email_usuario} onChange={handleChange} required />
-        <label>Telefono</label>
-        <input name="tel_usuario" value={form.tel_usuario} onChange={handleChange} required />
-        <div style={{ display: 'flex', gap: 10 }}>
-          <div style={{ flex: 1 }}>
-            <label>Nombre</label>
-            <input name="nombre_usuario" value={form.nombre_usuario} onChange={handleChange} required />
-          </div>
-          <div style={{ flex: 1 }}>
-            <label>Apellido</label>
-            <input name="apellido_usuario" value={form.apellido_usuario} onChange={handleChange} required />
-          </div>
+        <div>
+          <label>Contraseña</label>
+          <input name="contraseña" type="password" value={form.contraseña} onChange={handleChange} required />
         </div>
-        <label>Dirección</label>
-        <input name="direccion_usuario" value={form.direccion_usuario} onChange={handleChange} required />
-        <button type="submit" disabled={loading}>
-          {loading ? 'Registrando...' : 'Registrarse'}
-        </button>
-      </form>
-    </div>
-  );
+      </div>
+      <label>Email</label>
+      <input name="email_usuario" type="email" value={form.email_usuario} onChange={handleChange} required />
+      <label>Telefono</label>
+      <input name="tel_usuario" value={form.tel_usuario} onChange={handleChange} required />
+      <div className="input-row">
+        <div>
+          <label>Nombre</label>
+          <input name="nombre_usuario" value={form.nombre_usuario} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Apellido</label>
+          <input name="apellido_usuario" value={form.apellido_usuario} onChange={handleChange} required />
+        </div>
+      </div>
+      <label>Dirección</label>
+      <input name="direccion_usuario" value={form.direccion_usuario} onChange={handleChange} required />
+      <button type="submit" disabled={loading}>
+        {loading ? 'Registrando...' : 'Registrarse'}
+      </button>
+    </form>
+  </div>
+);
 };
 
 export default Registro;
